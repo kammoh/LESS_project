@@ -37,10 +37,16 @@ typedef struct {
     monomial_t private_Q_inv[NUM_KEYPAIRS];
 } prikey_t;
 
+
+#ifdef sig_t
+#undef sig_t
+#endif
+
 typedef struct {
     monomial_t mu[T];
     uint8_t digest[DENSE_HASH_LENGTH]; /* stored as one l-bit value per byte after parsing */
-} sig_t;
+} sig_t_t;
+#define sig_t sig_t_t
 
 
 /* keygen cannot fail */

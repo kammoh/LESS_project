@@ -24,6 +24,7 @@
 
 #pragma once
 #include "parameters.h"
+#include <inttypes.h>
 
 typedef struct {
     FQ_ELEM values[K][N];

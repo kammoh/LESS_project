@@ -33,10 +33,11 @@ void hash( uint8_t digest[DENSE_HASH_LENGTH],
              const char * const m,
              const uint64_t mlen,
              generator_mat_t G_tilde[T]){
-    unsigned char message_buffer[ mlen + T*sizeof(generator_mat_t) ];
+    unsigned char *message_buffer = (unsigned char *) malloc( mlen + T*sizeof(generator_mat_t));
     memcpy(message_buffer, G_tilde, T*sizeof(generator_mat_t) );
     memcpy(message_buffer + T*sizeof(generator_mat_t), m, mlen);
     sha3_256(digest,message_buffer, mlen+T*sizeof(generator_mat_t));
+    free(message_buffer);
 }
 
 /* parses a digest expanding it according to the LESS variant requirements

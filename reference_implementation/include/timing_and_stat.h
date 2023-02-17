@@ -24,7 +24,9 @@
 
 #pragma once
 #include <math.h>
+#include <inttypes.h>
 
+#ifndef __arm64__
 static inline
 uint64_t x86_64_rtdsc(void) {
   unsigned long long result;
@@ -37,6 +39,12 @@ uint64_t x86_64_rtdsc(void) {
         : "%rcx", "%rdx");
   return result;
 }
+#else
+static inline
+uint64_t x86_64_rtdsc(void) {
+  return 0;
+}
+#endif
 
 typedef struct {
      long double mean;

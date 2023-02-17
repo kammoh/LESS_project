@@ -71,7 +71,7 @@ void LESS_sign(const prikey_t * SK,
     monomial_t Q_tilde[T];
     generator_mat_t G_tilde[T];
     generator_mat_t tmp_full_G;
-    uint8_t is_pivot_column[N];
+    uint8_t is_pivot_column[N] = {0};
 
     generator_rref_expand(&tmp_full_G,&PK->SF_G_C[0]);  
     for(int i = 0; i < T; i++){

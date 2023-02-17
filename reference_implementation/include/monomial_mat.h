@@ -24,6 +24,7 @@
 
 #pragma once
 #include "parameters.h"
+#include <inttypes.h>
 
  /* Structure representing a monomial matrix */
  /* consider a n=3 example                   

@@ -1,9 +1,6 @@
 cmake_minimum_required(VERSION 3.13)
 project(LESS C)
 
-#set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -pedantic -O3 -g3 -march=native")
- set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -O3 -march=native")
-
 
 set(BASE_SOURCES lib/fq_arith.c
                  lib/monomial.c
@@ -15,7 +12,7 @@ set(BASE_SOURCES lib/fq_arith.c
                  lib/LESS.c
                  )
                  
-find_library(KECCAK_LIB keccak)
+find_library(KECCAK_LIB XKCP)
 if(NOT KECCAK_LIB)
  set(STANDALONE_KECCAK 1)
  message("Employing standalone SHA-3")
@@ -28,7 +25,9 @@ if(STANDALONE_KECCAK)
   set(KECCAK_EXTERNAL_ENABLE "")
   list(APPEND COMMON_SOURCES lib/sha3.c)
 else()
-  set(KECCAK_EXTERNAL_LIB keccak)
+  include_directories(${KECCAK_LIB})
+  link_directories(${KECCAK_LIB})
+  set(KECCAK_EXTERNAL_LIB XKCP)
   set(KECCAK_EXTERNAL_ENABLE "-DSHA_3_LIBKECCAK")
 endif()
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${KECCAK_EXTERNAL_ENABLE}")

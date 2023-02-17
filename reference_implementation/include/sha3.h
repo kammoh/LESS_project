@@ -23,8 +23,9 @@
  **/
 
 #pragma once
+
 #if defined(SHA_3_LIBKECCAK)
-#include <libkeccak.a.headers/KeccakHash.h>
+#include <libXKCP.a.headers/KeccakHash.h>
 
 // %%%%%%%%%%%%%%%%%%%%%%%%%% SHAKE Wrappers %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #define SHAKE_STATE_STRUCT Keccak_HashInstance

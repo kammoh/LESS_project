@@ -23,7 +23,6 @@
  **/
 
 #pragma once
-#include <stdint.h>
 #define SEED_LENGTH_BYTES 16
 #define LESS_MIN_TOTAL_SIZE 1
 

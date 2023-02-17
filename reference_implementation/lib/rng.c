@@ -39,8 +39,7 @@
 /*              start PSEUDO-RAND GENERATOR ROUTINES for rnd.h                */
 /*----------------------------------------------------------------------------*/
 
-/* Initializes a CSPRNG from either an input seed or the output of 
- * clock_gettime. Input seed assumed to be a C convention string */
+/* Initializes a CSPRNG from input seed */
 SHAKE_STATE_STRUCT platform_csprng_state;
 
 void initialize_prng(SHAKE_STATE_STRUCT *shake_state,

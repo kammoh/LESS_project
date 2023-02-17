@@ -34,3 +34,24 @@ J. Comput. Math. Comput. Syst. Theory 7(2) (2022) [link](https://doi.org/10.1080
 | Min. Pub. Key  size |    3205.45     |    311449.36      |       310232.29    |
 | Min. Signature size |    28823.12    |    122002.57      |       122002.57    |
 | Min. PK+Sig    size |    5617.63     |    510400.97      |       512253.13    |
+
+
+### Building Reference Implementation
+
+- Clone and build [XKCP](https://github.com/XKCP/XKCP)
+```
+git clone https://github.com/XKCP/XKCP.git
+cd XKCP
+make <target-arch>/libXKCP.a
+```
+`taget-arch` should be either `reference` or target machine architecture.
+For example for optimized ARMv8 build run:
+```
+make ARMv8A/libXKCP.a
+```
+
+- build
+```
+cmake -B build -DKECCAK_LIB=<PATH-TO-XKCP> -DCMAKE_BUILD_TYPE=Release
+cmake --build build
+```

@@ -36,11 +36,13 @@ void microbench(){
     welford_init(&timer);
     generator_mat_t G;
     generator_rnd(&G);
+    uint8_t is_pivot_column[N];
+    memset(is_pivot_column,0,sizeof(is_pivot_column));
 
     uint64_t cycles;
     for(int i = 0; i <100; i++) {
         cycles = x86_64_rtdsc();
-        generator_gausselim(&G);
+        generator_gausselim(&G, is_pivot_column);
         welford_update(&timer,x86_64_rtdsc()-cycles);
     }
     welford_print(timer);
@@ -98,7 +100,7 @@ void LESS_sign_verify_speed(){
     fprintf(stderr,"Keygen-Sign-Verify: %s", is_signature_ok == 1 ? "functional\n": "not functional\n" );
 }
 int main(int argc, char* argv[]){
-    initialize_pseudo_random_generator_seed(1, "9");
+    // initialize_pseudo_random_generator_seed(1, "9");
     fprintf(stderr,"LESS reference implementation\n");
     LESS_sign_verify_speed();
 //     microbench();
